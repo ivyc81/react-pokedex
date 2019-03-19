@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Pokedex from './Pokedex';
 import pickRandom from './helper';
+import './Pokegame.css'
 
 class Pokegame extends Component {
     static defaultProps = {
@@ -24,10 +25,17 @@ class Pokegame extends Component {
         const pokemons1 = pickRandom(this.props.pokemon, 4);
         const exp1 = pokemons1.reduce((acc, p) => acc+p.base_experience, 0);
 
+        let win = false;
+        let win1 = false;
+        if(exp1 > exp){
+            win1 = true;
+        } else {
+            win = true;
+        }
     return (
-        <div>
-            <Pokedex pokemon={ pokemons } totalExp={ exp }/>
-            <Pokedex pokemon={ pokemons1 } totalExp={ exp1 } />
+        <div className='Pokegame'>
+            <Pokedex pokemon={ pokemons } totalExp={ exp } isWinner={ win }/>
+            <Pokedex pokemon={ pokemons1 } totalExp={ exp1 } isWinner={ win1 }/>
         </div>
     );
   }
